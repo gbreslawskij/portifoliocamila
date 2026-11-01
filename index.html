@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gabrielly Breslawskij — Portfólio criativo</title>
+  <meta name="description" content="Portfólio criativo de Gabrielly Breslawskij: direção criativa, produção audiovisual e criação de conteúdo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --text: #111;
+      --muted: #8a8a85;
+      --line: #e3e1dc;
+      --tile: #e9e7e2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navegação */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      font-size: 14px;
+    }
+    nav .logo { font-weight: 500; letter-spacing: -0.01em; }
+    nav ul { display: flex; gap: 28px; list-style: none; }
+    nav ul a { color: var(--muted); transition: color .2s; }
+    nav ul a:hover { color: var(--text); }
+
+    /* Headline */
+    header.hero { padding: 120px 0 112px; }
+    .label {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero h1 {
+      margin-top: 20px;
+      font-size: clamp(44px, 8vw, 104px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    /* Títulos de seção */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px solid var(--line);
+      padding: 20px 0 40px;
+    }
+
+    /* Espaço reservado para imagens: some quando a imagem carrega */
+    .media {
+      position: relative;
+      background: var(--tile);
+      overflow: hidden;
+    }
+    .media::before {
+      content: attr(data-label);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .media img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    /* Sobre mim */
+    .about {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 64px;
+      align-items: end;
+      padding-bottom: 140px;
+    }
+    .about .media { aspect-ratio: 4 / 5; }
+    .about p {
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 300;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      max-width: 30ch;
+    }
+
+    /* Projetos */
+    /* Índice dos projetos */
+    .index { list-style: none; margin-bottom: 120px; }
+    .index a {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 16px;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 300;
+      transition: padding-left .3s;
+    }
+    .index a:hover { padding-left: 8px; }
+    .index .num, .index .client { font-size: 14px; color: var(--muted); font-weight: 400; }
+
+    /* Cada projeto é um bloco separado, com número */
+    .project {
+      border-top: 1px solid var(--text);
+      padding: 24px 0 160px;
+      scroll-margin-top: 24px;
+    }
+    .project-num {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    .project-num b { color: var(--text); font-weight: 500; }
+    .project-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      margin-bottom: 28px;
+    }
+    .project-title h3 {
+      font-size: clamp(22px, 2.6vw, 32px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+    .project-title span { font-size: 15px; color: var(--muted); }
+    /* Dois banners lado a lado, com a mesma altura */
+    .banners {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .banners .media { aspect-ratio: 4 / 3; }
+    .banners figcaption {
+      padding-top: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 40ch;
+    }
+
+    /* Texto à esquerda, foto à direita */
+    .project-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 64px;
+    }
+    .project-detail .media { aspect-ratio: 9 / 10; }
+    /* Vídeo vertical: pequeno, colado ao texto */
+    .project-detail:has(.video) { grid-template-columns: auto 280px; justify-content: start; gap: 56px; }
+    .project-detail .media.video { aspect-ratio: 9 / 16; width: 100%; }
+    .media video { position: relative; width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Sem a foto 3, o texto ocupa a linha sozinho */
+    .project-detail:not(:has(.media)) { grid-template-columns: 1fr; }
+    .project-text {
+      font-size: clamp(18px, 1.8vw, 21px);
+      font-weight: 300;
+      line-height: 1.55;
+      max-width: 36ch;
+    }
+    .project-text strong { font-weight: 500; }
+
+    /* Rodapé / contato */
+    footer {
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      padding: 48px 0 56px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      font-size: 14px;
+    }
+    footer .big { font-size: clamp(24px, 3vw, 32px); font-weight: 300; letter-spacing: -0.02em; }
+    footer .big a { border-bottom: 1px solid var(--text); }
+    footer ul { list-style: none; display: flex; gap: 24px; align-items: flex-end; color: var(--muted); }
+    footer ul a:hover { color: var(--text); }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(247, 246, 243, .97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+      cursor: zoom-out;
+      z-index: 10;
+    }
+    .lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    /* Animação de entrada */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s, transform .8s; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 760px) {
+      header.hero { padding: 72px 0 72px; }
+      .about { grid-template-columns: 1fr; gap: 32px; padding-bottom: 96px; }
+      .about .media { max-width: 420px; }
+      .banners, .project-detail { grid-template-columns: 1fr; gap: 32px; }
+      .project-detail { margin-top: 48px; }
+      .project-detail:has(.video) { grid-template-columns: 1fr; gap: 32px; }
+      .project-detail .media.video { max-width: 280px; }
+      .project { padding-bottom: 104px; }
+      .index { margin-bottom: 88px; }
+      .index a { grid-template-columns: 40px 1fr; }
+      .index .client { display: none; }
+      nav ul { gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">Gabrielly Breslawskij</a>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#trabalhos">Trabalhos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero reveal">
+      <div class="label">Portfólio criativo</div>
+      <h1>Gabrielly<br>Breslawskij</h1>
+    </header>
+
+    <!--
+      Imagens: crie uma pasta "imagens" ao lado deste arquivo e salve as fotos
+      com os nomes usados abaixo (sobre.jpg, bruno-ribeiro-1.jpg, bruno-ribeiro-2.jpg, bruno-ribeiro-3.jpg).
+      Enquanto a foto não existir, aparece um quadro cinza com a legenda.
+    -->
+
+    <section id="sobre">
+      <div class="section-head"><span class="label">Sobre mim</span></div>
+      <div class="about reveal">
+        <div class="media" data-label="Sua foto">
+          <img src="fotos-web/sobre.jpg" alt="Foto de Gabrielly Breslawskij" onerror="this.remove()">
+        </div>
+        <p>Minha trajetória é movida pela criatividade e pela comunicação. Trabalho com direção criativa, produção audiovisual e criação de conteúdo, transformando ideias em imagens e histórias que aproximam marcas e pessoas.</p>
+      </div>
+    </section>
+
+    <section id="trabalhos">
+      <div class="section-head"><span class="label">Trabalhos selecionados</span><span class="label">4 projetos</span></div>
+
+      <ol class="index">
+        <li><a href="#projeto-1"><span class="num">01</span>Branding e Identidade Visual<span class="client">Bruno Ribeiro</span></a></li>
+        <li><a href="#projeto-2"><span class="num">02</span>Branding e Identidade Visual<span class="client">Dra. Rachel Alencar</span></a></li>
+        <li><a href="#projeto-3"><span class="num">03</span>Evento Notáveis – Embu<span class="client">RD Saúde</span></a></li>
+        <li><a href="#projeto-4"><span class="num">04</span>Evento SIPATMA<span class="client">RD Saúde</span></a></li>
+      </ol>
+
+      <!-- Projeto 01 -->
+      <article class="project reveal" id="projeto-1">
+        <div class="project-num"><b>Projeto 01</b><span>01 / 04</span></div>
+        <div class="project-title">
+          <h3>Branding e Identidade Visual</h3>
+          <span>Bruno Ribeiro</span>
+        </div>
+        <div class="banners">
+          <figure>
+            <div class="media" data-label="Banner 1">
+              <img src="fotos-web/bruno-ribeiro-1.jpg" alt="Cartela digital de cores Verão — capa" onerror="this.remove()">
+            </div>
+            <figcaption>2026 — Cartela digital de cores para Bruno Ribeiro, consultor de imagem</figcaption>
+          </figure>
+          <figure>
+            <div class="media" data-label="Banner 2">
+              <img src="fotos-web/bruno-ribeiro-2.jpg" alt="Cartela digital de cores Verão — páginas internas" onerror="this.remove()">
+            </div>
+            <figcaption>2026 — Cartela digital de cores para Bruno Ribeiro, consultor de imagem</figcaption>
+          </figure>
+        </div>
+
+        <div class="project-detail">
+          <p class="project-text">Desenvolvi o projeto de <strong>branding do consultor de imagem Bruno Ribeiro</strong>, desde a construção do conceito e da estratégia da marca até a criação da identidade visual. O projeto também incluiu o desenvolvimento de um material exclusivo sobre as quatro estações da consultoria de imagem, com direção de arte, diagramação, design editorial e acompanhamento da impressão final.</p>
+          <div class="media video" data-label="Vídeo">
+            <video src="fotos-web/bruno-ribeiro-3.mp4" poster="fotos-web/bruno-ribeiro-3-capa.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Bruno Ribeiro com as cartelas de cores impressas"></video>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 02 -->
+      <article class="project reveal" id="projeto-2">
+        <div class="project-num"><b>Projeto 02</b><span>02 / 04</span></div>
+        <div class="project-title">
+          <h3>Branding e Identidade Visual</h3>
+          <span>Dra. Rachel Alencar</span>
+        </div>
+        <div class="banners">
+          <figure>
+            <div class="media" data-label="Banner 1">
+              <img src="fotos-web/rachel-alencar-1.jpg" alt="Pastas personalizadas da Dra. Rachel Alencar" onerror="this.remove()">
+            </div>
+            <figcaption>Pasta personalizada para a Dra. Rachel Alencar</figcaption>
+          </figure>
+          <figure>
+            <div class="media" data-label="Banner 2">
+              <img src="fotos-web/rachel-alencar-2.jpg" alt="Receituários da Dra. Rachel Alencar" onerror="this.remove()">
+            </div>
+            <figcaption>Receituário para a Dra. Rachel Alencar</figcaption>
+          </figure>
+        </div>
+        <div class="project-detail">
+          <p class="project-text">Desenvolvi o projeto de <strong>branding e identidade visual da Dra. Rachel Alencar</strong>, construindo uma identidade alinhada ao seu posicionamento profissional e à comunicação da sua marca. O projeto contemplou desde a concepção visual até a criação e produção de <strong>materiais impressos</strong>, como pastas personalizadas e receituários, garantindo unidade e consistência em todos os pontos de contato da marca.</p>
+          <div class="media" data-label="Foto 3">
+            <img src="02%20Rachel%20Alencar/foto%203.jpg" alt="Identidade visual da Dra. Rachel Alencar" onerror="this.parentElement.remove()">
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 03 -->
+      <article class="project reveal" id="projeto-3">
+        <div class="project-num"><b>Projeto 03</b><span>03 / 04</span></div>
+        <div class="project-title">
+          <h3>Evento Notáveis – Embu</h3>
+          <span>RD Saúde</span>
+        </div>
+        <div class="banners">
+          <figure>
+            <div class="media" data-label="Banner 1">
+              <img src="fotos-web/notaveis-1.jpg" alt="Banner com mapa do evento CD Notável Embu 2026" onerror="this.remove()">
+            </div>
+            <figcaption>2026 — Banner de sinalização com mapa do evento CD Notável Embu</figcaption>
+          </figure>
+          <figure>
+            <div class="media" data-label="Banner 2">
+              <img src="fotos-web/notaveis-2.jpg" alt="Banner do ponto de alimentação do evento CD Notável Embu 2026" onerror="this.remove()">
+            </div>
+            <figcaption>2026 — Banner do ponto de alimentação do evento</figcaption>
+          </figure>
+        </div>
+        <div class="project-detail">
+          <p class="project-text">Atuei no <strong>desdobramento do Key Visual (KV)</strong> do evento Notáveis, adaptando a identidade visual para diferentes formatos e materiais de comunicação, como banners e faixas. Também fui responsável pela <strong>preparação e finalização dos arquivos para impressão</strong>.</p>
+          <div class="media" data-label="Foto 3">
+            <img src="03%20Notáveis/foto%203.jpg" alt="Evento Notáveis – RD Saúde" onerror="this.parentElement.remove()">
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 04 -->
+      <article class="project reveal" id="projeto-4">
+        <div class="project-num"><b>Projeto 04</b><span>04 / 04</span></div>
+        <div class="project-title">
+          <h3>Evento SIPATMA</h3>
+          <span>RD Saúde</span>
+        </div>
+        <div class="banners">
+          <figure>
+            <div class="media" data-label="Banner 1">
+              <img src="fotos-web/simpta-1.jpg" alt="Banner de coleta seletiva da SIPATMA – RD Saúde" onerror="this.remove()">
+            </div>
+            <figcaption>Banner de coleta seletiva da SIPATMA – RD Saúde</figcaption>
+          </figure>
+          <figure>
+            <div class="media" data-label="Banner 2">
+              <img src="fotos-web/simpta-2.jpg" alt="Camiseta da SIPATMA – RD Saúde" onerror="this.remove()">
+            </div>
+            <figcaption>Camiseta do evento com a identidade da SIPATMA</figcaption>
+          </figure>
+        </div>
+        <div class="project-detail">
+          <p class="project-text">Desenvolvi os <strong>desdobramentos gráficos do evento SIPATMA</strong> a partir do Key Visual previamente definido, adaptando a identidade visual para diferentes formatos e aplicações. O trabalho envolveu a criação de peças de comunicação visual e a <strong>preparação dos arquivos finais para impressão</strong>.</p>
+          <div class="media" data-label="Foto 3">
+            <img src="04%20SIMPTA/foto%203.jpg" alt="Evento SIMPTA – RD Saúde" onerror="this.parentElement.remove()">
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer id="contato">
+      <div class="big">Vamos conversar? <a href="https://wa.me/5511943379990?text=Ol%C3%A1%2C%20Gabrielly!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">WhatsApp</a></div>
+      <ul>
+        <li><a href="https://www.instagram.com/acolherstudio/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/gabriellybreslawskij/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </footer>
+  </div>
+
+  <div class="lightbox" aria-hidden="true"><img alt=""></div>
+
+  <script>
+    // Abre a imagem em tela cheia ao clicar
+    const box = document.querySelector('.lightbox');
+    const boxImg = box.querySelector('img');
+    document.querySelectorAll('.media img').forEach(img => {
+      img.addEventListener('click', () => {
+        boxImg.src = img.src;
+        boxImg.alt = img.alt;
+        box.classList.add('open');
+      });
+    });
+    const close = () => box.classList.remove('open');
+    box.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+    // Revela os elementos suavemente ao rolar
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
