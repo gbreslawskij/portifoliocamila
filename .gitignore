@@ -7,3 +7,6 @@
 
 # Configuração local do editor
 /.claude/
+
+.vercel
+.env*
